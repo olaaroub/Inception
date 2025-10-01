@@ -3,6 +3,13 @@
 # -e MONGO_INITDB_ROOT_USERNAME=olaaroub -e MONGO_INITDB_ROOT_PASSWORD=1 mongo hadchi twil
 
 services:
+  my-app:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - MONGO_DB_USERNAME=olaaroub
+      - MONGO_DB_PWD=1
   mongodb:
     image: mongo
     ports:
