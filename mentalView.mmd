@@ -1,0 +1,12 @@
+Host (Docker-managed)
+┌─────────────────────────┐
+│ db_data (volume)         │  ← persists even if container is gone
+│  ├─ mysql/               │
+│  ├─ wordpress_db_files   │
+└─────────────────────────┘
+
+Container: db
+┌─────────────────────────┐
+│ /var/lib/mysql           │  ← MySQL writes here
+│   → actually stored in db_data volume
+└─────────────────────────┘

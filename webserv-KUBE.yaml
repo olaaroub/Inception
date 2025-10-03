@@ -7,21 +7,20 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: webserv # <-- The Deployment identifies its Pods with this label.
+      app: webserv
   template:
     metadata:
       labels:
-        app: webserv # <-- This label is applied to each Pod. IT MUST MATCH THE SELECTOR.
+        app: webserv
     spec:
       containers:
       - name: webserv-container
         image: olaaroub/webserv-test:1.0
         imagePullPolicy: IfNotPresent
         ports:
-        - containerPort: 8080 # <-- The port the app listens on inside the container.
+        - containerPort: 8080
 
 ---
-# This separator allows multiple documents in one file.
 
 apiVersion: v1
 kind: Service
@@ -30,8 +29,8 @@ metadata:
 spec:
   type: NodePort
   selector:
-    app: webserv # <-- CRITICAL: This MUST MATCH the Pod's 'app' label.
+    app: webserv
   ports:
     - protocol: TCP
       port: 8080
-      targetPort: 8080 # <-- This MUST MATCH the 'containerPort' above.
+      targetPort: 8080
