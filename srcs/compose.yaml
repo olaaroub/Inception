@@ -1,7 +1,30 @@
 version: '3.8'
-
 services:
-  db:
+
+  nginx:
+    depends_on:
+      - wordpress
+    build: ./requirements/nginx
+    container_name: nginx
+    restart: always
+    ports:
+      - 433:433
+    networks:
+      - inception
+
+  wordpress:
+    depends_on:
+      - mariadb
+    build: ./requirements/wordpress
+    container_name: wordpress
+    restart: always
+    networks:
+      - inception
+    env_file: .env
+    volumes:
+      - wp-files:/var/www/html
+
+  mariadb:
     build: ./requirements/mariadb
     container_name: mariadb
     restart: always
@@ -9,15 +32,22 @@ services:
       - inception
     env_file: .env
     volumes:
-      - data-db:/var/lib/mysql
+      - db-data:/var/lib/mysql
 
 networks:
   inception:
     driver: bridge
 
 volumes:
-  db_data:
+  db-data:
     driver: local
     driver_opts:
       o: bind
       device: '/home/olaaroub/data/mariadb'
+
+  wp-files:
+    driver: local
+    driver_opts:
+      o: bind
+      device: '/home/olaaroub/data/wordpress'
+
