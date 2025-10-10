@@ -1,4 +1,3 @@
-version: '3.8'
 services:
 
   nginx:
@@ -8,13 +7,16 @@ services:
     container_name: nginx
     restart: always
     ports:
-      - 433:433
+      - 443:443
     networks:
       - inception
+    volumes:
+      - wp-files:/var/www/html:ro
 
   wordpress:
     depends_on:
       - mariadb
+      - redis
     build: ./requirements/wordpress
     container_name: wordpress
     restart: always
@@ -34,6 +36,13 @@ services:
     volumes:
       - db-data:/var/lib/mysql
 
+  redis:
+    build: ./requirements/redis
+    container_name: redis
+    restart: always
+    networks:
+      - inception
+
 networks:
   inception:
     driver: bridge
@@ -42,12 +51,14 @@ volumes:
   db-data:
     driver: local
     driver_opts:
-      o: bind
+      type: 'none'
+      o: 'bind'
       device: '/home/olaaroub/data/mariadb'
 
   wp-files:
     driver: local
     driver_opts:
-      o: bind
+      type: 'none'
+      o: 'bind'
       device: '/home/olaaroub/data/wordpress'
 
