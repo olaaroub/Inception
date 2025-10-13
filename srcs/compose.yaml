@@ -37,7 +37,7 @@ services:
       - db-data:/var/lib/mysql
 
   redis:
-    build: ./requirements/redis
+    build: ./requirements/bonus/redis
     container_name: redis
     restart: always
     networks:

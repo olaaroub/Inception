@@ -10,7 +10,6 @@ CREATE USER IF NOT EXISTS 'root'@'%' IDENTIFIED BY '$MYSQL_ROOT_PASSWORD';
 GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' WITH GRANT OPTION;
 
 -- Create the WordPress application user only if it doesn't already exist.
--- The '%' wildcard means 'any host on the network'.
 CREATE USER IF NOT EXISTS '$MYSQL_USER'@'%' IDENTIFIED BY '$MYSQL_PASSWORD';
 
 -- Grant all necessary privileges for the WordPress user on its database.
