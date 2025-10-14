@@ -1,4 +1,3 @@
-# Use our standard slim Debian 11 base image.
 FROM debian:bullseye-slim
 
 RUN apt-get update && \
