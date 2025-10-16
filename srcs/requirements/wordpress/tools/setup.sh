@@ -24,7 +24,7 @@ if [ ! -f "wp-config.php" ]; then
                      --allow-root
 
     wp core install --url="$WP_URL" \
-                    --title="Inception" \
+                    --title="Inception42" \
                     --admin_user="$WP_ADMIN_USER" \
                     --admin_password="$WP_ADMIN_PASSWORD" \
                     --admin_email="$WP_ADMIN_EMAIL" \
@@ -51,7 +51,6 @@ if ! wp config has WP_REDIS_HOST --allow-root 2>/dev/null; then
     wp config set WP_REDIS_PORT 6379 --allow-root
 fi
 
-# Enable Redis cache
 wp redis enable --allow-root 2>/dev/null || true
 
 exec "$@"

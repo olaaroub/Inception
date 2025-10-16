@@ -1,23 +1,15 @@
 #!/bin/bash
 
-mysqld --user=mysql --bootstrap << EOF
+service mariadb start;
 
--- Create the main WordPress database only if it doesn't already exist.
-CREATE DATABASE IF NOT EXISTS \`$MYSQL_DATABASE\`;
+sleep 3
 
--- Create the root user if it doesn't exist, allowing connections from any host.
-CREATE USER IF NOT EXISTS 'root'@'%' IDENTIFIED BY '$MYSQL_ROOT_PASSWORD';
-GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' WITH GRANT OPTION;
+mysql -e "CREATE DATABASE IF NOT EXISTS \`${MYSQL_DATABASE}\`;"
 
--- Create the WordPress application user only if it doesn't already exist.
-CREATE USER IF NOT EXISTS '$MYSQL_USER'@'%' IDENTIFIED BY '$MYSQL_PASSWORD';
+mysql -e "GRANT ALL PRIVILEGES ON \`${MYSQL_DATABASE}\`.* TO \`${MYSQL_USER}\`@'%' IDENTIFIED BY '${MYSQL_PASSWORD}';"
 
--- Grant all necessary privileges for the WordPress user on its database.
-GRANT ALL PRIVILEGES ON \`$MYSQL_DATABASE\`.* TO '$MYSQL_USER'@'%';
+mysql -u root -p${MYSQL_ROOT_PASSWORD} -e "FLUSH PRIVILEGES;"
 
--- Apply the new privileges immediately.
-FLUSH PRIVILEGES;
-EOF
+mysqladmin -u root -p${MYSQL_ROOT_PASSWORD} shutdown
 
 exec "$@"
-
