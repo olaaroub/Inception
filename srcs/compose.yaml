@@ -42,6 +42,7 @@ services:
     restart: always
     networks:
       - inception
+      
   ftp:
     depends_on:
       - wordpress
@@ -56,6 +57,15 @@ services:
       - inception
     volumes:
       - wp-files:/home/$FTP_USER/ftp/files
+
+  adminer:
+    depends_on:
+      - mariadb
+    build: requirements/bonus/adminer
+    container_name: adminer
+    restart: always
+    networks:
+      - inception
 
 networks:
   inception:

@@ -14,4 +14,4 @@ mysql -e "GRANT ALL PRIVILEGES ON \`${MYSQL_DATABASE}\`.* TO \`${MYSQL_USER}\`@'
 
 mysqladmin -u root -p${MYSQL_ROOT_PASSWORD} shutdown
 
-exec "$@"
+exec "$@"  

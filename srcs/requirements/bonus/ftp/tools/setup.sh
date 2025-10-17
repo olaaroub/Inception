@@ -28,10 +28,12 @@ pasv_enable=YES
 local_root=/home/$FTP_USER/ftp
 pasv_min_port=50000
 pasv_max_port=50100
+userlist_enable=YES
+userlist_deny=NO
 userlist_file=/etc/vsftpd.userlist" >> /etc/vsftpd.conf
 
 echo $FTP_USER | tee -a /etc/vsftpd.userlist
 
 chown $FTP_USER:$FTP_USER /home/$FTP_USER/ftp/files
 
-exec "$@"
+exec "$@"		

@@ -9,7 +9,5 @@ RUN chmod +x /usr/local/bin/setup.sh
 
 EXPOSE 21 50000-50100
 
-
 ENTRYPOINT [ "/usr/local/bin/setup.sh" ]
-
 CMD [ "/usr/sbin/vsftpd" ]
