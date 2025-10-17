@@ -12,8 +12,9 @@ until redis-cli -h redis ping > /dev/null 2>&1; do
     sleep 2
 done
 
-# Check if WordPress is already configured. If wp-config.php exists, skip installation.
 if [ ! -f "wp-config.php" ]; then
+
+    echo "--- First time setup: Installing WordPress and configuring Redis plugin ---"
 
     wp core download --allow-root
 
@@ -29,29 +30,23 @@ if [ ! -f "wp-config.php" ]; then
                     --admin_password="$WP_ADMIN_PASSWORD" \
                     --admin_email="$WP_ADMIN_EMAIL" \
                     --allow-root
-fi
 
-if ! wp user get "$WP_USER" --allow-root > /dev/null 2>&1; then
-    echo "Creating regular user: $WP_USER"
     wp user create "$WP_USER" "$WP_USER_EMAIL" \
                    --role=subscriber \
                    --user_pass="$WP_USER_PASSWORD" \
                    --allow-root
-fi
 
-# Configure Redis (runs every time, not just on first install)
-if ! wp plugin is-installed redis-cache --allow-root 2>/dev/null; then
-    echo "Installing Redis Object Cache plugin..."
     wp plugin install redis-cache --activate --allow-root
-fi
 
-if ! wp config has WP_REDIS_HOST --allow-root 2>/dev/null; then
-    echo "Configuring Redis settings..."
     wp config set WP_REDIS_HOST redis --allow-root
     wp config set WP_REDIS_PORT 6379 --allow-root
+
+    chown -R www-data:www-data /var/www/html
+
 fi
+
+echo "Enabling Redis Cache..."
 
 wp redis enable --allow-root 2>/dev/null || true
 
 exec "$@"
-

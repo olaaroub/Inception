@@ -42,14 +42,20 @@ services:
     restart: always
     networks:
       - inception
-  # ftp:
-  #   build: ./requirements/bonus/ftp
-  #   container_name: ftp
-  #   restart: always
-  #   env_file: .env
-  #   networks:
-  #     - inception
-
+  ftp:
+    depends_on:
+      - wordpress
+    build: ./requirements/bonus/ftp
+    container_name: ftp
+    restart: always
+    ports:
+      - "21:21"
+      - "50000-50100:50000-50100"
+    env_file: .env
+    networks:
+      - inception
+    volumes:
+      - wp-files:/home/$FTP_USER/ftp/files
 
 networks:
   inception:
