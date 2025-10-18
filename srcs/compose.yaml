@@ -4,6 +4,7 @@ services:
     depends_on:
       - wordpress
     build: ./requirements/nginx
+    image: nginx:42
     container_name: nginx
     restart: always
     ports:
@@ -18,6 +19,7 @@ services:
       - mariadb
       - redis
     build: ./requirements/wordpress
+    image: wordpress:42
     container_name: wordpress
     restart: always
     networks:
@@ -28,6 +30,7 @@ services:
 
   mariadb:
     build: ./requirements/mariadb
+    image: mariadb:42
     container_name: mariadb
     restart: always
     networks:
@@ -38,15 +41,17 @@ services:
 
   redis:
     build: ./requirements/bonus/redis
+    image: redis
     container_name: redis
     restart: always
     networks:
       - inception
-      
+
   ftp:
     depends_on:
       - wordpress
     build: ./requirements/bonus/ftp
+    image: ftp
     container_name: ftp
     restart: always
     ports:
@@ -62,10 +67,31 @@ services:
     depends_on:
       - mariadb
     build: requirements/bonus/adminer
+    image: adminer
     container_name: adminer
     restart: always
     networks:
       - inception
+
+  website:
+    depends_on:
+      - nginx
+    build: requirements/bonus/website
+    image: website
+    container_name: website
+    networks:
+      - inception
+
+  portainer:
+    build: ./requirements/bonus/portainer
+    image: portainer
+    container_name: portainer
+    restart: always
+    networks:
+      - inception
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - portainer-data:/data
 
 networks:
   inception:
@@ -86,3 +112,9 @@ volumes:
       o: 'bind'
       device: '/home/olaaroub/data/wordpress'
 
+  portainer-data:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: '/home/olaaroub/data/portainer'
