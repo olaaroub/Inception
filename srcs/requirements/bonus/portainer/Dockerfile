@@ -1,25 +1,18 @@
 FROM debian:12-slim
 
-RUN apt-get update && \
-    apt-get install -y wget && \
-    rm -rf /var/lib/apt/lists/*
+RUN apt update && \
+    apt install -y curl ca-certificates \
+    && rm -rf /var/lib/apt/lists/*
+    # libssl-dev libsqlite3-0 libcurl4 libuuid1 && \
 
-RUN wget https://github.com/portainer/portainer/releases/download/2.20.1/portainer-2.20.1-linux-amd64.tar.gz -O portainer.tar.gz && \
-    tar -xzf portainer.tar.gz && \
-    rm portainer.tar.gz && \
-    mv portainer /opt/portainer-binary
+RUN mkdir -p /opt/portainer
 
-RUN mkdir /data
+RUN curl -L https://github.com/portainer/portainer/releases/download/2.20.2/portainer-2.20.2-linux-amd64.tar.gz -o /opt/portainer/portainer.tar.gz &&\
+    tar -xzf /opt/portainer/portainer.tar.gz -C /opt/portainer --strip-components=1 && \
+    rm /opt/portainer/portainer.tar.gz
 
-# Create a non-root user for security
-RUN adduser --system --no-create-home portainer && \
-    chown -R portainer:portainer /data /opt/portainer-binary
+RUN     mkdir -p /data
 
-# Run as the non-root user
-USER portainer
+EXPOSE  9000
 
-EXPOSE 9000
-
-ENTRYPOINT [ "/opt/portainer-binary" ]
-
-CMD [ "--data=/data" ]
+CMD ["/opt/portainer/portainer", "--data=/data"]

@@ -6,9 +6,9 @@ RUN apt-get update && \
 
 WORKDIR /var/www/html
 
-RUN wget "https://www.adminer.org/latest.php" -O adminer.php" && \
+RUN wget "https://www.adminer.org/latest.php" -O "adminer.php" && \
 	chmod 755 adminer.php
 
 EXPOSE 8080
 
-CMD [ "php", "S", "0.0.0.0:8080" ]
+CMD [ "php", "-S", "0.0.0.0:8080" ]
