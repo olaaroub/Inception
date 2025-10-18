@@ -7,7 +7,7 @@ RUN apt update && \
 
 RUN mkdir -p /opt/portainer
 
-RUN curl -L https://github.com/portainer/portainer/releases/download/2.20.2/portainer-2.20.2-linux-amd64.tar.gz -o /opt/portainer/portainer.tar.gz &&\
+RUN curl -L https://github.com/portainer/portainer/releases/download/2.33.2/portainer-2.33.2-linux-amd64.tar.gz -o /opt/portainer/portainer.tar.gz &&\
     tar -xzf /opt/portainer/portainer.tar.gz -C /opt/portainer --strip-components=1 && \
     rm /opt/portainer/portainer.tar.gz
 
