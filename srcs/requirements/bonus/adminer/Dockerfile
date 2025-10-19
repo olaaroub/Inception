@@ -6,8 +6,8 @@ RUN apt-get update && \
 # --no-install-recommends ca-certificates
 WORKDIR /var/www/html
 
-RUN wget "http://www.adminer.org/latest.php" -O "adminer.php"
-RUN chmod 755 adminer.php
+RUN wget "http://www.adminer.org/latest.php" -O "index.php"
+RUN chmod 755 index.php
 
 EXPOSE 8080
 
