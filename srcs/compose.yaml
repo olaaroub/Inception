@@ -76,14 +76,14 @@ services:
     networks:
       - inception
 
-  # website:
-  #   depends_on:
-  #     - nginx
-  #   build: requirements/bonus/website
-  #   image: website
-  #   container_name: website
-  #   networks:
-  #     - inception
+  website:
+    depends_on:
+      - nginx
+    build: requirements/bonus/website
+    image: website
+    container_name: website
+    networks:
+      - inception
 
   portainer:
     build: ./requirements/bonus/portainer
