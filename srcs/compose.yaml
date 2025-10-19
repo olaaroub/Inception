@@ -80,7 +80,7 @@ services:
     depends_on:
       - nginx
     build: requirements/bonus/website
-    image: website
+    image: website:42
     container_name: website
     networks:
       - inception
