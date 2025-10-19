@@ -15,4 +15,4 @@ RUN     mkdir -p /data
 
 EXPOSE  9000
 
-CMD ["/opt/portainer/portainer", "--data=/data"]
+CMD ["/opt/portainer/portainer", "--data=/data", "--admin-password-file=/run/secrets/portainer_admin_password"]

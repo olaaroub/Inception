@@ -1,3 +1,6 @@
+secrets:
+  portainer_admin_password:
+    file: ./secrets/portainer_admin_password.txt
 services:
 
   nginx:
@@ -92,6 +95,8 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - portainer-data:/data
+    secrets:
+      - portainer_admin_password
 
 networks:
   inception:
