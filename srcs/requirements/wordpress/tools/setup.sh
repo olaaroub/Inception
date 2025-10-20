@@ -1,12 +1,10 @@
 #!/bin/bash
 
-# Wait for the MariaDB container to be ready to accept connections.
 until mariadb -h"$WORDPRESS_DB_HOST" -u"$WORDPRESS_DB_USER" -p"$WORDPRESS_DB_PASSWORD" -e "SELECT 1;" > /dev/null 2>&1; do
     echo "Waiting for MariaDB to be ready..."
     sleep 2
 done
 
-# Wait for Redis to be ready
 until redis-cli -h redis ping > /dev/null 2>&1; do
     echo "Waiting for Redis to be ready..."
     sleep 2
@@ -14,7 +12,7 @@ done
 
 if [ ! -f "wp-config.php" ]; then
 
-    echo "--- First time setup: Installing WordPress and configuring Redis plugin ---"
+    echo "--- First time : Installing WordPress and configuring Redis plugin ---"
 
     wp core download --allow-root
 

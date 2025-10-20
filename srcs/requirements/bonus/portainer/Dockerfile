@@ -3,7 +3,6 @@ FROM debian:12-slim
 RUN apt update && \
     apt install -y curl ca-certificates \
     && rm -rf /var/lib/apt/lists/*
-    # libssl-dev libsqlite3-0 libcurl4 libuuid1 && \
 
 RUN mkdir -p /opt/portainer
 

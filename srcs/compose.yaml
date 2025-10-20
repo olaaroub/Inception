@@ -96,10 +96,6 @@ services:
     secrets:
       - portainer_admin_password
 
-networks:
-  inception:
-    driver: bridge
-
 volumes:
   db-data:
     driver: local
@@ -121,3 +117,7 @@ volumes:
       type: 'none'
       o: 'bind'
       device: '/home/olaaroub/data/portainer'
+
+  networks:
+  inception:
+    driver: bridge

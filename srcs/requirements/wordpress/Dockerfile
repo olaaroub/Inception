@@ -23,8 +23,6 @@ RUN apt-get update && \
 
 COPY --from=0 /usr/local/bin/wp /usr/local/bin/wp
 
-# Create PHP-FPM runtime directory hadi dart lia mochkil dial php fpm fach taybghi ysayb pid file
-# /run/php/php8.2-fpm.pid
 RUN mkdir -p /run/php && \
     chown www-data:www-data /run/php
 
