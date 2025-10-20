@@ -2,10 +2,10 @@ secrets:
   portainer_admin_password:
     file: ./secrets/portainer_admin_password.txt
 services:
-
   nginx:
     depends_on:
       - wordpress
+      - website
     build: ./requirements/nginx
     image: nginx:42
     container_name: nginx
@@ -79,8 +79,6 @@ services:
       - inception
 
   website:
-    depends_on:
-      - nginx
     build: requirements/bonus/website
     image: website:42
     container_name: website
