@@ -1,6 +1,6 @@
 secrets:
   portainer_admin_password:
-    file: ./secrets/portainer_admin_password.txt
+    file: ../secrets/portainer_admin_password.txt
 services:
   nginx:
     depends_on:
@@ -73,8 +73,6 @@ services:
     image: adminer:42
     container_name: adminer
     restart: always
-    ports:
-      - "8080:8080"
     networks:
       - inception
 
