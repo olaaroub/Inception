@@ -9,12 +9,15 @@
         width: 400px;
         margin-left: 0;
     }
+
     h3 {
         display: inline-block;
     }
+
     #static {
         color: red;
     }
+
     #dynamic {
         color: green;
     }
@@ -25,21 +28,25 @@
         const response = await fetch('http://192.168.110.43:3000/fetch-data', {
             method: "GET",
             headers: {
-              'Accept': 'application/json',
-              'Content-Type': 'application/json'
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
             }
         });
         const jsonResponse = await response.json();
         document.getElementById('dynamic').textContent = jsonResponse.data;
     })();
 </script>
+
 <body>
     <div class='container' id='container'>
         <h1>Welcome to this Super Sophisticated App</h1>
-        <span>Some static data:  </span><h3 id="static">this is hard-coded in index.html</h3>
+        <span>Some static data: </span>
+        <h3 id="static">this is hard-coded in index.html</h3>
         <hr />
-        <span>Data from MongoDB:  </span><h3 id="dynamic"></h3>
+        <span>Data from MongoDB: </span>
+        <h3 id="dynamic"></h3>
         <hr />
     </div>
 </body>
+
 </html>

@@ -23,7 +23,6 @@ let mongoUrlDockerCompose = `mongodb://${DB_USER}:${DB_PASS}@mongodb`;
 // pass these options to mongo client connect request to avoid DeprecationWarning for current Server Discovery and Monitoring engine
 let mongoClientOptions = { useNewUrlParser: true, useUnifiedTopology: true };
 
-// the following db and collection will be created on first connect
 let databaseName = "my-db";
 let collectionName = "my-collection";
 
@@ -41,7 +40,6 @@ app.get('/fetch-data', function (req, res) {
       response = result;
       client.close();
 
-      // Send response
       res.send(response ? response : {});
     });
   });
