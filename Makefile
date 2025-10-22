@@ -1,6 +1,5 @@
 COMPOSE_FILE = srcs/compose.yaml
 
-.PHONY: all up down fclean re logs
 
 
 all: up
@@ -14,12 +13,13 @@ stop:
 down:
 	docker compose -f $(COMPOSE_FILE) down
 
-
 fclean:
 	docker compose -f $(COMPOSE_FILE) down -v
 
 
-re: fclean all
-
 logs:
 	docker compose -f $(COMPOSE_FILE) logs -f
+
+re: fclean all
+
+.PHONY: all up down fclean re logs

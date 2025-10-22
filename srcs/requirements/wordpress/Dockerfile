@@ -35,4 +35,5 @@ WORKDIR /var/www/html
 EXPOSE 9000
 
 ENTRYPOINT ["/usr/local/bin/setup.sh"]
+
 CMD ["/usr/sbin/php-fpm8.2", "-F"]

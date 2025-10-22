@@ -17,10 +17,8 @@ app.get('/', function (req, res) {
     res.sendFile(path.join(__dirname, "index.html"));
   });
 
-// when starting app locally, use "mongodb://admin:password@localhost:27017" URL instead
 let mongoUrlDockerCompose = `mongodb://${DB_USER}:${DB_PASS}@mongodb`;
 
-// pass these options to mongo client connect request to avoid DeprecationWarning for current Server Discovery and Monitoring engine
 let mongoClientOptions = { useNewUrlParser: true, useUnifiedTopology: true };
 
 let databaseName = "my-db";

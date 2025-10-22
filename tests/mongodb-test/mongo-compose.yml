@@ -1,4 +1,4 @@
-#example without docekr compose:
+#without docekr compose:
 # sudo docker run -d -p 27017 --name mongodb --network mongo-net \
 # -e MONGO_INITDB_ROOT_USERNAME=olaaroub -e MONGO_INITDB_ROOT_PASSWORD=1 mongo hadchi twil
 
