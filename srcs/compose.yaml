@@ -76,10 +76,10 @@ services:
     networks:
       - inception
 
-  website:
-    build: requirements/bonus/website
-    image: website:42
-    container_name: website
+  architecture:
+    build: requirements/bonus/architecture
+    image: architecture:42
+    container_name: architecture
     networks:
       - inception
 
