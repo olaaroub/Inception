@@ -184,14 +184,6 @@ make up
 
 ## 📄 License
 
-This project is part of the 42 School curriculum. Feel free to use it for educational purposes.
+This project is part of the 42 School curriculum.
 
-To add a license to your GitHub repository:
-
-1. Go to your repository on GitHub
-2. Click **Add file** → **Create new file**
-3. Name it `LICENSE`
-4. Click **Choose a license template** and select one (MIT, GPL, etc.)
-5. Commit the file
-
-Alternatively, use GitHub's repository settings: **Settings** → **General** → **License** → **Choose a license**.
+For license information, see the [LICENSE](LICENSE) file.
