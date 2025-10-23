@@ -1,6 +1,8 @@
 
 # Inception
 
+> **A Docker-based multi-container infrastructure orchestration project featuring NGINX, WordPress, MariaDB, Redis, and Portainer. Built with Docker Compose, custom Dockerfiles, TLS encryption, and secure networking for scalable web application deployment.**
+
 ## 📋 Project Overview
 
 Inception is a system administration and Docker orchestration project that creates a complete web infrastructure stack. The project demonstrates advanced containerization concepts, network isolation, persistent data management, and secure service communication.
