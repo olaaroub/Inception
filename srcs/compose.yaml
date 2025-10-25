@@ -5,7 +5,7 @@ services:
   nginx:
     depends_on:
       - wordpress
-      - website
+      - architecture
     build: ./requirements/nginx
     image: nginx:42
     container_name: nginx
@@ -77,7 +77,7 @@ services:
       - inception
 
   architecture:
-    build: requirements/bonus/architecture
+    build: requirements/bonus/website
     image: architecture:42
     container_name: architecture
     networks:
