@@ -159,6 +159,7 @@ Now set the correct ownership on the host directory:
 
 ```bash
 sudo chown -R 999:999 ~/data/mariadb
+sudo chown -R www-data:www-data ~/data/wordpress # Fix nginx permissions to bind mount the location
 ```
 
 Replace `999:999` with the actual UID:GID from the previous command.

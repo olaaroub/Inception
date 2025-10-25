@@ -118,6 +118,6 @@ volumes:
       o: 'bind'
       device: '/home/olaaroub/data/portainer'
 
-  networks:
+networks:
   inception:
     driver: bridge

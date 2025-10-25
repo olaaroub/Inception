@@ -5,6 +5,9 @@ all: up
 up:
 	docker compose -f $(COMPOSE_FILE) up --build -d
 
+build:
+	docker compose -f $(COMPOSE_FILE) build --no-cache
+
 stop:
 	docker compose -f $(COMPOSE_FILE) stop
 
