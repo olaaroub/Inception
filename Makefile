@@ -1,3 +1,4 @@
+
 COMPOSE_FILE = srcs/compose.yaml
 
 all: up
